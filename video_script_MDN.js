@@ -1,11 +1,12 @@
-let preview = document.getElementById("preview");
-let recording = document.getElementById("recording");
-let startButton = document.getElementById("startButton");
-let stopButton = document.getElementById("stopButton");
-let downloadButton = document.getElementById("downloadButton");
-let logElement = document.getElementById("log");
+window.onload=function(){
+  let preview = document.getElementById("preview");
+  let recording = document.getElementById("recording");
+  let startButton = document.getElementById("startButton");
+  let stopButton = document.getElementById("stopButton");
+  let downloadButton = document.getElementById("downloadButton");
+  let logElement = document.getElementById("log");
 
-let recordingTimeMS = 5000;
+  let recordingTimeMS = 5000;
 
 function log(msg) {
   logElement.innerHTML += msg + "\n";
@@ -68,3 +69,5 @@ startButton.addEventListener("click", function() {
 stopButton.addEventListener("click", function() {
   stop(preview.srcObject);
 }, false);
+
+};
