@@ -6,18 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Web Recorder</title>
     <link rel="stylesheet" href="./web-recorder-style.css" />
-    <script type="text/javascript" src="audio_script.js"></script>
+    <script type="text/javascript" src="video_script_2.js"></script>
   </head>
   <body>
     <header>
       <h1>Web Recorder</h1>
     </header>
     <main>
-      <div class="controls">
-        <button type="button" id="mic">Get Microphone</button>
-        <button type="button" id="record" hidden>Record</button>
-      </div>
-      <ul id="recordings"></ul>
+      <a id="download">Download</a>
+        <button id="stop">Stop</button>
+        <video id="player" controls></video>
     </main>
     <footer>
       <p>
