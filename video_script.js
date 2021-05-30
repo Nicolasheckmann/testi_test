@@ -1,21 +1,21 @@
 window.addEventListener('DOMContentLoaded', () => {
 
-  const getMic = document.getElementById('mic');
+  const getCam = document.getElementById('cam');
   const recordButton = document.getElementById('record');
   const list = document.getElementById('recordings');
   
   if ('MediaRecorder' in window) {
 
-    getMic.addEventListener('click', async () => {
-      getMic.setAttribute('hidden', 'hidden');
+    getCam.addEventListener('click', async () => {
+      getCam.setAttribute('hidden', 'hidden');
 
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
           audio: true,
-          video: false
+          video: true
         });
 
-        const mimeType = 'audio/webm';
+        const mimeType = 'video/webm';
         let chunks = [];
         const recorder = new MediaRecorder(stream, { type: mimeType });
 
@@ -47,7 +47,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
       } catch {
         renderError(
-          'You denied access to the microphone so this demo will not work.'
+          'You denied access to the camera so this demo will not work.'
         );
       }
     });
@@ -65,7 +65,7 @@ function renderError(message) {
 function renderRecording(blob, list) {
   const blobUrl = URL.createObjectURL(blob);
   const li = document.createElement('li');
-  const audio = document.createElement('audio');
+  const video = document.createElement('video');
   const anchor = document.createElement('a');
   anchor.setAttribute('href', blobUrl);
   const now = new Date();
@@ -74,9 +74,9 @@ function renderRecording(blob, list) {
     `recording-${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDay().toString().padStart(2, '0')}--${now.getHours().toString().padStart(2, '0')}-${now.getMinutes().toString().padStart(2, '0')}-${now.getSeconds().toString().padStart(2, '0')}.webm`
   );
   anchor.innerText = 'Download';
-  audio.setAttribute('src', blobUrl);
-  audio.setAttribute('controls', 'controls');
-  li.appendChild(audio);
+  video.setAttribute('src', blobUrl);
+  video.setAttribute('controls', 'controls');
+  li.appendChild(video);
   li.appendChild(anchor);
   list.appendChild(li);
 }
